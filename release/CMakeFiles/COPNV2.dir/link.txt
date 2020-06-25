@@ -1,1 +1,0 @@
-/usr/bin/cc -O3 -DNDEBUG   CMakeFiles/COPNV2.dir/src/main.c.o CMakeFiles/COPNV2.dir/src/bitset.c.o CMakeFiles/COPNV2.dir/src/graph.c.o CMakeFiles/COPNV2.dir/src/graph6.c.o CMakeFiles/COPNV2.dir/src/vertice_queue.c.o  -o COPNV2  -lm -lpthread 
