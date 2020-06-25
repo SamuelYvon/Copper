@@ -98,6 +98,10 @@ dkms.conf
 
 # CMake
 cmake-build-*/
+CMakeFiles/*
+release/*
+
+
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
@@ -223,3 +227,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/c,clion,linux,windows,macos
 
+# The produced executable
+Copper

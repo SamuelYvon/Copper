@@ -1,3 +1,0 @@
-/home/syvon/Documents/Copper/CMakeFiles/rebuild_cache.dir
-/home/syvon/Documents/Copper/CMakeFiles/edit_cache.dir
-/home/syvon/Documents/Copper/CMakeFiles/Copper.dir
