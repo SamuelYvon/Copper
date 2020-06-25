@@ -229,3 +229,6 @@ $RECYCLE.BIN/
 
 # The produced executable
 Copper
+
+# What is this
+CMakeCache.txt
