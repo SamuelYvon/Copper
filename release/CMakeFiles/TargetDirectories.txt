@@ -1,0 +1,3 @@
+/home/syvon/CLionProjects/COPNV2/release/CMakeFiles/rebuild_cache.dir
+/home/syvon/CLionProjects/COPNV2/release/CMakeFiles/edit_cache.dir
+/home/syvon/CLionProjects/COPNV2/release/CMakeFiles/COPNV2.dir

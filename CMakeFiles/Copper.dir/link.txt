@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/Copper.dir/src/main.c.o CMakeFiles/Copper.dir/src/bitset.c.o CMakeFiles/Copper.dir/src/graph.c.o CMakeFiles/Copper.dir/src/graph6.c.o CMakeFiles/Copper.dir/src/vertice_queue.c.o  -o Copper  -lm -lpthread 
