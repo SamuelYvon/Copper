@@ -229,7 +229,7 @@ void *cop_number_worker(void *task_profile_t_void) {
         // We do not need access to those variables
         pthread_mutex_unlock(profile->mut);
 
-        u32 k = cop_number(g, 1);
+        u32 k = cop_number(g, args->max_cop);
         destroy_graph(g);
 
         // We need to update the breakdown
