@@ -47,6 +47,12 @@ bool bonato_al_algo2(graph_t *g, u8 k) {
         printf("%d, ", k);
     }
 
+#ifdef USE_PITFALL_CHECK
+    if (1 == k && !graph_has_pitfall(g, 1)) {
+        return FALSE;
+    }
+#endif
+
     graph_t *tensor_graph = tensor_power(g, k);
 
     u32 n = g->n;
@@ -64,6 +70,7 @@ bool bonato_al_algo2(graph_t *g, u8 k) {
     // This is bitset_not very storage efficient as it is probably sparse.
     u32 *cached_tuple = malloc(sizeof(u32) * k);
     neigh_list_t *adjacency_list = malloc(sizeof(neigh_list_t) * N);
+    vertice_queue_t *q = vertice_queue_new(N);
 
     for (u32 i = 0; i < N; ++i) {
         adjacency_list[i].len = 0; // We use len 0 as an indicator that it's empty since len >= 1 for all vertices
@@ -73,11 +80,6 @@ bool bonato_al_algo2(graph_t *g, u8 k) {
         bitset_t *neigh = neighbourhood(g, tuple, k);
         bitset_not(neigh, neigh);
         phi[i] = neigh;
-    }
-
-    vertice_queue_t *q = vertice_queue_new(N);
-
-    for (u32 i = 0; i < N; ++i) {
         vertice_queue_push(q, i);
     }
 
@@ -464,6 +466,10 @@ int main(int argc, char *argv[]) {
         printf("Samuel Yvon\n");
         printf("Cop Number Calculator\n");
         printf("Will use at maximum %d workers.\n", workers);
+
+#ifdef USE_PITFALL_CHECK
+        printf("Using the pitfall quick check.\n");
+#endif
 
         if (aggregate) {
             printf("Aggregating results.\n");

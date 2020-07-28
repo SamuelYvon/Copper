@@ -70,4 +70,12 @@ bitset_t *neighbourhood(graph_t *g, const u32 *T, size_t width);
  */
 graph_t *tensor_power(graph_t *g, u32 s);
 
+/**
+ * Verify if the graph has a pitfall of at most k dominators
+ * @param g the graph
+ * @param k the dominator number (>= 1)
+ * @return if the graph has a pitfall
+ */
+bool graph_has_pitfall(graph_t *g, u8 k);
+
 #endif //COPNV2_GRAPH_H

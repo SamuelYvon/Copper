@@ -117,6 +117,16 @@ void bitset_all(bitset_t *b, bool v);
  */
 bool bitset_any(bitset_t *b);
 
+
+/**
+ * Verify that two bitsets are equal. They need not be the same size, but the longer one
+ * must have null data after the end of the "first one".
+ * @param a
+ * @param b
+ * @return
+ */
+bool bitset_eqs(bitset_t *a, bitset_t *b);
+
 #define COPNV2_BITFIELD_H
 
 #endif //COPNV2_BITFIELD_H

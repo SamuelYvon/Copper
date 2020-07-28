@@ -145,3 +145,34 @@ void bitset_all(bitset_t *b, bool v) {
         bitset_set(b, i, v);
     }
 }
+
+bool bitset_eqs(bitset_t *a, bitset_t *b) {
+    bool eq = TRUE;
+    if (b->l > a->l) {
+        bitset_t *swap = a;
+        a = b;
+        b = swap;
+    }
+
+    // We can assume |a| < |b|
+    u32 scout = 0;
+    u32 l = a->l;
+    for (; scout < l; ++scout) {
+        if (a->parts[scout] != b->parts[scout]) {
+            eq = FALSE;
+            break;
+        }
+    }
+
+    if (eq) {
+        l = b->l;
+        for (; scout < l; ++scout) {
+            if (0x00 != b->parts[scout]) {
+                eq = FALSE;
+                break;
+            }
+        }
+    }
+
+    return eq;
+}

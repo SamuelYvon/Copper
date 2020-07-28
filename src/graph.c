@@ -179,3 +179,53 @@ graph_t *tensor_power(graph_t *g, u32 s) {
 
     return tensor_graph;
 }
+
+
+bool graph_has_pitfall(graph_t *g, u8 k) {
+
+    bool has_pit = FALSE;
+
+    u32 *indices_set = malloc(sizeof(u32) * k);
+    for (u32 u = 0; u < g->n && !has_pit; ++u) {
+        u32 neigh_sz = 0;
+        u32 *neighs = bitset_indices(g->rows[u], &neigh_sz);
+        // It could be less than k; so in theory we need to check
+        // all subsets, but technically, we do not, since we do an OR of
+        // the neighbour sets.
+        bitset_t *covered = new_bitset(g->rows[u]->bits);
+
+        u32 loops = ipow(neigh_sz, k);
+
+        for (u32 i = 0; i < loops; ++i) {
+            bitset_t *n = bitset_clone(g->rows[u]);
+            bitset_all(covered, 0);
+            int_to_tuple(k, indices_set, neigh_sz, i);
+
+            for (u32 j = 0; j < k; ++j) {
+                u32 neigh_index = indices_set[j];
+                u32 neigh = neighs[neigh_index];
+
+                if (neigh == u) {
+                    // of course they will have the same
+                    // neighbourhood
+                    continue;
+                }
+
+                bitset_or(covered, g->rows[neigh]);
+            }
+
+            bitset_and(n, covered);
+            has_pit = bitset_eqs(g->rows[u], n);
+            bitset_destroy(n);
+
+            if (has_pit) {
+                break;
+            }
+        }
+
+        bitset_destroy(covered);
+    }
+
+    free(indices_set);
+    return has_pit;
+}
